@@ -4,6 +4,8 @@ import Slide from '../../components/Slide/Slide';
 import TrustedBy from '../../components/trustedBy/TrustedBy';
 import './Home.scss';
 import CatCard from '../../components/catCard/CatCard';
+import {projects} from '../../data';
+import ProjectCard from '../../components/projectCard/ProjectCard';
 
 import {cards} from '..//../data';
 
@@ -98,6 +100,12 @@ const Home = () => {
           </div>
         </div>
       </div>
+
+      <Slide slidesToShow={4} arrowsScroll={4}>
+        {projects.map((card) => (
+          <ProjectCard key={card.id} card={card} />
+        ))}
+      </Slide>
     </div>
   )
 }
