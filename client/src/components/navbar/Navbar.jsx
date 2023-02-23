@@ -1,9 +1,11 @@
 import React ,{ useState ,useEffect} from 'react';
 import './Navbar.scss';
+import {Link} from 'react-router-dom';
 
 
 const Navbar = () => {
     const [active , setActive] = useState(false);
+    const [open , setOpen] = useState(false);
 
     const isActive = () => {
         scrollY > 0 ? setActive(true) : setActive(false);
@@ -26,7 +28,8 @@ const Navbar = () => {
     <div className={active ? "active navbar" : "navbar"}>
         <div className='container'>
             <div className='logo'>
-             <span>fiverr</span>
+                <Link to="/" className='link'> <span>fiverr</span></Link>
+            
             <span className='dot'>.</span>
             </div>
             <div className='links'>
@@ -37,21 +40,27 @@ const Navbar = () => {
             {!currentUser.isSeller && <span>Become a Seller</span>}
                {!currentUser &&  <button>Join</button>}
                {currentUser && (
-                <div className='user'>
-                    <img src="" alt="" />
+                <div className='user'  onClick={()=>setOpen(!open)}>
+                    <img src="https://images.pexels.com/photos/1115697/pexels-photo-1115697.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="" />
                     <span>{currentUser?.username}</span>
-                    <div className='options'>
-                        {currentUser?.isSeller && (
-                            <>
-                            <span>Gigs</span>
-                            <span>Add New Gig</span>
-                            
-                            </>
-                        )}
-                        <span>Orders</span>
-                        <span>Messages</span>
-                        <span>Logout</span>
-                    </div>
+
+                   {open &&  <div className='options'>
+                            {currentUser?.isSeller && (
+                                <>
+                                <span>Gigs</span>
+                                <span>Add New Gig</span>
+                                
+                                </>
+                            )
+                            }
+                            <span>Orders</span>
+                            <span>Messages</span>
+                            <span>Logout</span>
+                             </div>
+                    
+                    }
+                    
+
                 </div>
                )}
             </div>
