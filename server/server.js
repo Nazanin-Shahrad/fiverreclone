@@ -8,6 +8,7 @@ import conversationRoute from './routes/conversation.route.js';
 import messageRoute from './routes/message.controller.js';
 import reviewRoute from './routes/review.route.js';
 import authRoute from './routes/auth.route.js';
+import cookieParser from 'cookie-parser';
 
 
 const app = express();
@@ -23,6 +24,9 @@ const connect = async () => {
     }
 }
 
+//middlewares
+app.use(express.json());
+app.use(cookieParser());
 app.use("/api/auth" ,authRoute);
 app.use("/api/users" ,userRoute);
 app.use("/api/gigs" ,gigRoute);
