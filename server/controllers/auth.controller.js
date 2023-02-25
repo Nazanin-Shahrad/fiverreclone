@@ -50,6 +50,7 @@ export const register = async (req, res, next) => {
       next(err);
     }
   };
+  
 
   export const logout = (req, res , next) => {
     res.clearCookie("accessToken" , {
