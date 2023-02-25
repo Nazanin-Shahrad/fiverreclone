@@ -66,3 +66,23 @@ const GigSchema = new Schema({
     
 },{timestamps:true})
 export default mongoose.model("Gig" , GigSchema);
+
+// {
+    
+//     "title" : "the first Gig 1",
+//     "desc":"this is the first Gig I create",
+//     "totalStar":5,
+//     "starNumber":4,
+    
+//     "cat":"design",
+//     "price":101,
+   
+//     "cover":"https://images.pexels.com/photos/720327/pexels-photo-720327.jpeg?auto=compress&cs=tinysrgb&w=1600",
+//     "images":["https://images.pexels.com/photos/1074535/pexels-photo-1074535.jpeg?auto=compress&cs=tinysrgb&w=1600", "https://images.pexels.com/photos/1462935/pexels-photo-1462935.jpeg?auto=compress&cs=tinysrgb&w=1600", "https://images.pexels.com/photos/1054777/pexels-photo-1054777.jpeg?auto=compress&cs=tinysrgb&w=1600"],
+//     "shortTitle":"Gig 1",
+//     "shortDesc":"Gig 1",
+//     "deliveryTime":3,
+//     "revisionNumber":3,
+//     "features":["feature 1" , "feature 2" , "feature 3"]
+   
+// }
