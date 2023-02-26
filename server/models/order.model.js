@@ -32,7 +32,7 @@ const OrderSchema = new Schema({
     },
     peyment_intent:{
         type: String,
-        required: true,
+        // required: true,
     },
     
     
