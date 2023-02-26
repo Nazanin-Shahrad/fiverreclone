@@ -1,11 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import React from "react";
+import React ,{useState}from "react";
 import newRequest from "../../utils/newRequest";
 import Review from "../review/Review";
 import "./Reviews.scss";
+// import toast from 'react-hot-toast'
 
 
 const Reviews = ({ gigId }) => {
+  const resError=null;
+
 
   const queryClient = useQueryClient()
   const { isLoading, error, data } = useQuery({
@@ -22,23 +25,53 @@ const Reviews = ({ gigId }) => {
     },
     onSuccess:()=>{
       queryClient.invalidateQueries(["reviews"])
+    },
+    onError:(error)=>{ 
+
+     
+      console.log(error['response'].data);
+
+      // const x = error['response'].data;
+      // // const resError = error['response'].data;
+      // // console.log(resError);
+      // // // toast.error(`Something went wrong: ${error.message}`)
+      // // throw Error(error['response'].data);
+      // return x
     }
+
+
   });
+  // console.log("mutation error" , mutation.data)
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const desc = e.target[0].value;
     const star = e.target[1].value;
+    console.log("desc and star is ::::" , desc , star)
+   
+   
     mutation.mutate({ gigId, desc, star });
+    console.log(mutation.isError);
+    // if(mutation.isError){
+    //   if ((mutation.error.message) === "Request failed with status code 403"){
+    //     console.log("you are a seller and can not add a review.")
+    //   }
+    // }
+  
+    
   };
+
+
+  // console.log("mutation review added :::" , mutation.error.reponse.data)
+  
 
   return (
     <div className="reviews">
       <h2>Reviews</h2>
       {isLoading
-        ? "loading"
+        ? ("loading")
         : error
-        ? "Something went wrong!"
+        ? ("Something went wrong!")
         : data.map((review) => <Review key={review._id} review={review} />)}
       <div className="add">
         <h3>Add a review</h3>
@@ -52,6 +85,8 @@ const Reviews = ({ gigId }) => {
             <option value={5}>5</option>
           </select>
           <button>Send</button>
+          {mutation.isError && <div>{mutation.error['response'].data}</div>}
+          {mutation.isSuccess ? <div> review added</div> : null}
         </form>
       </div>
     </div>
