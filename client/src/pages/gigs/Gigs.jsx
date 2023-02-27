@@ -11,21 +11,26 @@ function Gigs() {
   const minRef = useRef();
   const maxRef = useRef();
 
-  const { search } = useLocation();
+
+
+  const {search} = useLocation();
+  console.log("search" , search)
+
+  
 
   const { isLoading, error, data, refetch } = useQuery({
     queryKey: ["gigs"],
     queryFn: () =>
       newRequest
         .get(
-          `/gigs?${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
+          `/gigs${search}&min=${minRef.current.value}&max=${maxRef.current.value}&sort=${sort}`
         )
         .then((res) => {
           return res.data;
         }),
   });
 
-  console.log(data);
+  // console.log(data);
 
   const reSort = (type) => {
     setSort(type);
@@ -43,10 +48,10 @@ function Gigs() {
   return (
     <div className="gigs">
       <div className="container">
-        <span className="breadcrumbs">Liverr > Graphics & Design ></span>
+        <span className="breadcrumbs">Liverr {">"} Graphics & Design {">"}</span>
         <h1>AI Artists</h1>
         <p>
-          Explore the boundaries of art and technology with Liverr's AI artists
+          Explore the boundaries of art and technology with Liverrs AI artists
         </p>
         <div className="menu">
           <div className="left">

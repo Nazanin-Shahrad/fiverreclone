@@ -43,6 +43,7 @@ export const getGig = async (req, res, next) => {
 
   export const getGigs = async (req, res, next) => {
     const q = req.query;
+    console.log("alan query chie??????????" , q);
     const filters = {
       ...(q.userId && { userId: q.userId }),
       ...(q.cat && { cat: q.cat }),
