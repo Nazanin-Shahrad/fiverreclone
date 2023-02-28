@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './Login.scss';
-import axios from 'axios';
+// import axios from 'axios';
 import newRequest from "../../utils/newRequest";
 import { useNavigate } from "react-router-dom";
 
@@ -13,7 +13,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await newRequest.post("https://fiverrclone.onrender.com/api/auth/login", { username, password });
+      const res = await newRequest.post("/auth/login", { username, password });
       console.log(username ,password)
       console.log(res.data)
       localStorage.setItem("currentUser", JSON.stringify(res.data));
