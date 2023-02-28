@@ -13,6 +13,9 @@ const Add = () => {
 
   const [state, dispatch] = useReducer(gigReducer, INITIAL_STATE);
 
+  console.log("initial state ::" , INITIAL_STATE);
+  console.log("state chie :::" ,state);
+
   const handleChange = (e) => {
     dispatch({
       type: "CHANGE_INPUT",
@@ -61,8 +64,9 @@ const Add = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log("state is moghe click rrooye add button:::" , state)
     mutation.mutate(state);
-    // navigate("/mygigs")
+    navigate("/mygigs")
   };
 
   return (

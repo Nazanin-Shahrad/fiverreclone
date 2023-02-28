@@ -8,6 +8,7 @@ import Reviews from "../../components/reviews/Reviews";
 
 function Gig() {
   const { id } = useParams();
+  console.log("dar page gig id chie?" , id)
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["gig"],
@@ -16,6 +17,8 @@ function Gig() {
         return res.data;
       }),
   });
+
+  console.log("data dar mored in gig chie?" , data)
 
   const userId = data?.userId;
 
@@ -69,11 +72,11 @@ function Gig() {
                 )}
               </div>
             )}
-            <Slider slidesToShow={1} arrowsScroll={1} className="slider">
-              {data.images.map((img) => (
-                <img key={img} src={img} alt="" />
-              ))}
-            </Slider>
+            {/* <Slider slidesToShow={1} arrowsScroll={1} className="slider"> */}
+              {/* {data.images.map((img) => ( */}
+                <img key={data._id} src={data.cover} alt="" />
+              {/* ))} */}
+            {/* </Slider> */}
             <h2>About This Gig</h2>
             <p>{data.desc}</p>
             {isLoadingUser ? (

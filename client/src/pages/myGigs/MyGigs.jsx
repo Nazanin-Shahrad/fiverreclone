@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./MyGigs.scss";
 import getCurrentUser from "../../utils/getCurrentUser";
@@ -8,17 +8,22 @@ import newRequest from "../../utils/newRequest";
 
 
 function MyGigs() {
-  const currentUser = getCurrentUser();
+  // const currentUser = getCurrentUser();
+  const currentUser =JSON.parse(localStorage.getItem("currentUser"));
+  console.log("current user id chie?",currentUser._id)
+  
 
   const queryClient = useQueryClient();
 
   const { isLoading, error, data } = useQuery({
     queryKey: ["myGigs"],
     queryFn: () =>
-      newRequest.get(`/gigs?userId=${currentUser.id}`).then((res) => {
+      newRequest.get(`/gigs?userId=${currentUser._id}`).then((res) => {
         return res.data;
       }),
   });
+// console.log("current user id ::",currentUser.id)
+  console.log("data chie?????", data)
 
   const mutation = useMutation({
     mutationFn: (id) => {
