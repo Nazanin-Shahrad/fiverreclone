@@ -25,6 +25,7 @@ const Navbar = () => {
     },[])
 
   const currentUser = JSON.parse(localStorage.getItem("currentUser"))
+  console.log("dar home currentuser chie?" , currentUser);
 
   const handleLogout = async () => {
     console.log("bye")
@@ -51,7 +52,8 @@ const Navbar = () => {
                 <span>Fiverr Business</span>
                 <span>Explore</span>
                 <span>English</span>
-                <Link to="/login" className='link'>Sign in</Link>
+                {!currentUser &&  <Link to="/login" className='link'>Sign in</Link>}
+                {!currentUser &&  <Link to="/register" className='link'>Sign up</Link>}
             {!currentUser?.isSeller && <span>Become a Seller</span>}
                {!currentUser &&  <button>Join</button>}
                {currentUser && (
