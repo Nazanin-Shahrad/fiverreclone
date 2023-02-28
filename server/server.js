@@ -29,6 +29,7 @@ const connect = async () => {
 app.use(cors({origin: "https://fiverrclone-nazanin.netlify.app/" , credentials : true}))
 app.use(express.json());
 app.use(cookieParser());
+
 app.use("/api/auth" ,authRoute);
 app.use("/api/users" ,userRoute);
 app.use("/api/gigs" ,gigRoute);
@@ -36,6 +37,12 @@ app.use("/api/orders" ,orderRoute);
 app.use("/api/conversations" ,conversationRoute);
 app.use("/api/messages" ,messageRoute);
 app.use("/api/reviews" ,reviewRoute);
+app.use("/api" , (req,res)=> {
+    res.send("hello from api")
+})
+app.use("/" , (req,res) => {
+    res.send("hello")
+})
 
 app.use((err , req, res , next) => {
     const errorStatus = err.status || 500; 
