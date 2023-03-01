@@ -31,6 +31,7 @@ const Navbar = () => {
     console.log("bye")
     try {
       await newRequest.post("/auth/logout");
+      console.log("url is :::: " , )
       localStorage.setItem("currentUser", null);
       navigate("/");
     } catch (err) {
@@ -53,9 +54,9 @@ const Navbar = () => {
                 <span>Explore</span>
                 <span>English</span>
                 {!currentUser &&  <Link to="/login" className='link'>Sign in</Link>}
-                {!currentUser &&  <Link to="/register" className='link'>Sign up</Link>}
+                {/* {!currentUser &&  <Link to="/register" className='link'>Sign up</Link>} */}
             {!currentUser?.isSeller && <span>Become a Seller</span>}
-               {!currentUser &&  <button>Join</button>}
+               {!currentUser && <Link to="/register" className='link'><button>Join</button></Link>}
                {currentUser && (
                 <div className='user'  onClick={()=>setOpen(!open)}>
                     <img src={currentUser.img ||  "/img/noavatar.jpg"} alt="" />
